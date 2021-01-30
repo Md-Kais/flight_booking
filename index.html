@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- BS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                        <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <!-- let sendIDname="firstClass"; -->
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input class="inp-style inp-width" id="firstClass" onkeypress='checkEnterClick(event)' type="text"
+                        style="margin-right: 3px;" name="" value=1>
+                </div>
+                <div>
+                    <button onclick="plus('firstClass')" class="plus-minus-btn btn btn-success btn-sm"
+                        style="margin-right: 6px;" type="button">&nbsp;+&nbsp;</button>
+                </div>
+                <div>
+                    <button class="plus-minus-btn btn btn-danger btn-sm" style="margin-left: 2px;" type="button"
+                        onclick="minus('firstClass')">&nbsp;-&nbsp;</button>
+                </div>
+
+            </div>
+
+
+
+            <div class="input-group f-class">
+                <!-- let sendIDname="economyClass"; -->
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input class="inp-style inp-width" type="text" style="margin-right: 3px;" name="" id="economyClass"
+                        onkeypress='checkEnterClick(event)' value=1>
+                </div>
+                <div>
+                    <button class="plus-minus-btn btn btn-success btn-sm" style="margin-right: 6px;" type="button"
+                        onclick="plus('economyClass')">&nbsp;+&nbsp;</button>
+                </div>
+                <div>
+                    <button class="plus-minus-btn btn btn-danger btn-sm" style="margin-left: 2px;" type="button"
+                        onclick="minus('economyClass')">&nbsp;-&nbsp;</button>
+                </div>
+
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="subTotal">250</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="VAT">25</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="TOTAL">275</span></p>
+                    </div>
+                </div>
+            </div>
+            <button onclick="bookNow()" class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
+        </div>
+        </section>
+
+        <script>
+            //create BUG then Solve it! from "CYBERBUG-2077"-"KAIS"
+            //recieve previous value;
+            function recievePreviousValue(id) {
+                var preValue = document.getElementById(id).value;
+                var NUMBER = Number(preValue);
+                //check float 
+                var floatCheckNumber = parseFloat(preValue);
+                preValue = parseInt(preValue);
+                if (Number.isNaN(preValue) == true || (NUMBER != preValue && NUMBER != floatCheckNumber)) {
+                    alert("The String Dude!" + "\n" + "We think that your provided Number is 0." + "\n" + "Please recheck the input box.");
+                    preValue = 0; preValue = parseInt(preValue);
+                    changePreviousValue(id, preValue);
+                }
+                else if (floatCheckNumber != preValue && Number.isNaN(preValue) == false) {
+                    alert("Float number.We think that your ticket amount is " + preValue);
+                    changePreviousValue(id, preValue);
+                }
+                else if (Number.isInteger(preValue) == true && Number.isNaN(preValue) == false) {
+                    //less than 0? we make it 0 ! "BUG SOLVED"
+                    if (preValue < 0) {
+                        preValue = 0;
+                        preValue = parseInt(preValue);
+                        changePreviousValue(id, preValue);
+                    }
+                }
+                //don't a number! make it a number =0 ! "BUG CREATE AND SOLVE"
+                //alert(typeof (preValue));
+                return preValue;
+            }
+
+            //change previous Value (new Value);
+            function changePreviousValue(id, VALUE) {
+                document.getElementById(id).value = VALUE;
+            }
+
+            //increase the value(plus)
+            function plus(id) {
+                var next = recievePreviousValue(id);
+                next += 1;
+                changePreviousValue(id, next);
+                lastTotal();
+            }
+
+            //decrease the value(minus);
+            function minus(id) {
+                var next = recievePreviousValue(id);
+                if (next > 0) {
+                    next -= 1;
+                }
+                else {
+                    next = 0;
+                }
+                changePreviousValue(id, next);
+                lastTotal();
+            }
+
+            //function the Price of each product
+            function productPrice(id, valueOfProduct) {
+                var amount = recievePreviousValue(id);
+                var price = valueOfProduct * amount;
+                return price;
+            }
+
+            //change Inner Text 
+            function innerTextChange(id, vALUEoFtOTAL) {
+                document.getElementById(id).innerText = vALUEoFtOTAL;
+            }
+
+            //subtotal +tax(10% VAT) +Total
+            function lastTotal() {
+
+                var subtotal = productPrice('firstClass', 150) + productPrice('economyClass', 100);
+                innerTextChange('subTotal', subtotal);
+
+                var vat = ((subtotal) * 0.1).toFixed(2);
+                vat = Math.ceil(vat);
+                innerTextChange('VAT', vat);
+                var total = subtotal + vat;
+                innerTextChange('TOTAL', total);
+                // bookNow();
+            }
+
+            //check ENTER CLICK
+            function checkEnterClick(event) {
+                if (event.keyCode == 13) {
+                    lastTotal();
+                }
+            }
+
+            //read inner text
+            function readInnerText(id) {
+                var InnerTEXT = document.getElementById(id).innerText;
+                return InnerTEXT;
+            }
+
+            //book NOW 
+            function bookNow() {
+                //last time check, if client not press enter or button.but we give him right output when you give him alert to pay and later that we update Subtotal card
+                lastTotal();
+                var firstCLASS = recievePreviousValue('firstClass');
+                var economyCLASS = recievePreviousValue('economyClass');
+                var subTOTALPRICE = readInnerText("subTotal");
+                var VATPRICE = readInnerText("VAT");
+                var totalPRICE = readInnerText("TOTAL");
+                if (totalPRICE == '0') {
+
+                    alert('Sir,' + "\n" + "Please Buy a Ticket For BOOKING!" + '\n' + "Thanks in Advance");
+
+                }
+                else {
+                    alert('SIR,' + "\n" + 'You want to buy ' + firstCLASS + ' First Class Ticket and ' + economyCLASS + " Economy Class ticket." + '\n' + "Subtotal: $" + subTOTALPRICE + '\n' + "Charge 10% VAT: $" + VATPRICE + '\n' + "Total Price: $" + totalPRICE + "\n" + "\n" + "Please,Pay $" + totalPRICE + " for buying your ordered ticket! ");
+                }
+            }
+
+
+        </script>
+
+
+
+
+        <!--Thank You-->
+</body>
+
+</html>
