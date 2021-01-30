@@ -75,12 +75,18 @@ nav ul li a:hover, a.active{
     /* margin: 6px; */
     /* word-spacing: 20px; */
 }
+
 .booking-form  .calculations{
     margin: 10px 0;
 }
 .booking-form  .calculations p{
     font-weight: 500;
     margin-bottom: 10px;
+}
+.reloadMe{
+    background-color: red!important;
+    width: 30%!important;
+   
 }
 .booking-form input{
     width: 100%;

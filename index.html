@@ -118,6 +118,7 @@
                 </div>
             </div>
             <button onclick="bookNow()" class="btn-style">Book Now</button>
+            <input type="button" value="Reload Page" onClick="window.location.reload(false)" class="reloadMe">
         </div>
 
         <div class="booking-content">
@@ -151,7 +152,7 @@
                     if (preValue < 0) {
                         preValue = 0;
                         preValue = parseInt(preValue);
-                         alert("Negative number.We think that your ticket amount is " + preValue);
+                        alert("Negative number.We think that your ticket amount is " + preValue);
                         changePreviousValue(id, preValue);
                     }
                 }
@@ -236,12 +237,15 @@
                 var totalPRICE = readInnerText("TOTAL");
                 if (totalPRICE == '0') {
 
-                    alert('Sir,' + "\n" + "Please Buy a Ticket For BOOKING!" + '\n' + "Thanks in Advance");
+                    alert('Sir,' + "\n" + "Please Buy a Ticket For BOOKING!" + '\n' + "Thanks in Advance" + '\n' + "This page is auto-reload after 2 second");
+                    setTimeout("location.reload(true);", 2000);
 
                 }
                 else {
-                    alert('SIR,' + "\n" + 'You want to buy ' + firstCLASS + ' First Class Ticket and ' + economyCLASS + " Economy Class ticket." + '\n' + "Subtotal: $" + subTOTALPRICE + '\n' + "Charge 10% VAT: $" + VATPRICE + '\n' + "Total Price: $" + totalPRICE + "\n" + "\n" + "Please,Pay $" + totalPRICE + " for buying your ordered ticket! ");
+                    alert('SIR,' + "\n" + 'You want to buy ' + firstCLASS + ' First Class Ticket and ' + economyCLASS + " Economy Class ticket." + '\n' + "Subtotal: $" + subTOTALPRICE + '\n' + "Charge 10% VAT: $" + VATPRICE + '\n' + "Total Price: $" + totalPRICE + "\n" + "\n" + "Please,Pay $" + totalPRICE + " for buying your ordered ticket!" + '\n' + "This page is auto - reload after 2 second");
+                    setTimeout("location.reload(true);", 2000);
                 }
+
             }
 
 
